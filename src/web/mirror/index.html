@@ -10,11 +10,10 @@
     <link href="style/main.css" rel="stylesheet" />
 </head>
 <body ng-controller="mainCTRL">
-    <div class="container" style="padding:100px 0;">
+    <div class="container" style="padding:50px 0;">
         <div class="row" ng-repeat="(key,val) in reflections">
             <div class="col-xs-3">
                 <div class="tile">
-                    
                     <span class="badge">{{key}}</span>
                     <div ng-show="val.name"><h7>Name</h7>{{val.name}}</div>
                     <div>
