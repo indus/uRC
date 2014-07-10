@@ -6,32 +6,53 @@
 };
 /// <reference path="../.typescript/node.d.ts" />
 var WAMP = require('../.typescript/wamp');
-var _ = require('lodash');
+var _ = require('lodash'), when = require('when');
 
 var Mirror = (function (_super) {
     __extends(Mirror, _super);
     function Mirror() {
         var _this = this;
         _super.call(this);
-        this.type = "Mirror";
         this.name = "";
-        this.reflection = {};
-        this.regs['mirror.reflect'] = [function (reflection) {
-                return _this.reflect(reflection);
-            }];
+        this.map = {};
+        this.regs['mirror.reflection'] = function () {
+            return _this.reflection.apply(_this, arguments);
+        };
+        this.regs['mirror'] = function () {
+            return _this.mirror.apply(_this, arguments);
+        };
     }
-    Mirror.prototype.reflect = function (reflection) {
-        if (reflection[0]) {
-            var id = reflection[0];
-            if (reflection[1] !== null)
-                this.reflection[id] = _.merge(this.reflection[id] || {}, reflection[1]);
-            else
-                delete this.reflection[id];
-            this.publish('mirror.reflection', [], this.reflection);
-            console.log(reflection);
-        }
+    Mirror.prototype.reflection = function () {
+        var d = when.defer();
+        var queue = _.map(this.map, function (val, id, map) {
+            return this.session.call("mirror." + id).then(function (reflection) {
+                return reflection;
+            }, function () {
+                map[id] = false;
+                delete map[id];
+            });
+        }, this);
+        when.all(queue).then(function (reflections) {
+            d.resolve(_.reduce(_.compact(reflections), function (refs, ref) {
+                refs[ref.module + "_" + ref.id] = ref;
+                return refs;
+            }, {}));
+        });
+        return d.promise;
+    };
 
-        return this.reflection;
+    Mirror.prototype.mirror = function (args, kwargs, obj) {
+        if (args) {
+            this.map[args[0]] = true;
+            console.log("[MIRROR] id:" + args[0]);
+            return args[0];
+        } else {
+            return this.map;
+        }
+    };
+
+    Mirror.prototype.onopen = function (session, details) {
+        _super.prototype.onopen.call(this, session, details);
     };
     return Mirror;
 })(WAMP.Node);

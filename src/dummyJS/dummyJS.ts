@@ -24,10 +24,10 @@ class dummyJS extends WAMP.Node {
 
     constructor() {
         super();
-        this.subs['mirror.reflection'] = [this.onreflection, {}];
-        this.regs['dummyJS.rpc'] = [this.rpc, {}];
-        this.subs['dummy.sub'] = [this.sub, {}];
-        this.subs['dummy.pub'] = [this.roundtrip, {}];
+        this.subs['mirror.reflection'] = this.onreflection;
+        this.regs['dummyJS.rpc'] = this.rpc;
+        this.subs['dummy.sub'] = this.sub;
+        this.subs['dummy.pub'] = this.roundtrip;
         
         setInterval(() => { this.publish('dummy.pub', [Date.now()]) }, 1000)
     }

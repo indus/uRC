@@ -267,8 +267,8 @@ body {
 }
 @font-face {
   font-family: 'mui';
-  src: url('../fonts/mui.eot');
-  src: url('../fonts/mui.eot?#iefix') format('embedded-opentype'), url('../fonts/mui.woff') format('woff'), url('../fonts/mui.ttf') format('truetype'), url('../fonts/mui.svg#muiregular') format('svg');
+  src: url('fonts/mui.eot');
+  src: url('fonts/mui.eot?#iefix') format('embedded-opentype'), url('fonts/mui.woff') format('woff'), url('fonts/mui.ttf') format('truetype'), url('fonts/mui.svg#muiregular') format('svg');
 }
 #map ::-webkit-scrollbar {
   width: 5px;
