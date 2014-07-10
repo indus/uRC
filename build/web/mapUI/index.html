@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MapUI | v2</title>
+    <link href="style/main.css" rel="stylesheet" />
+</head>
+<body ontouchstart="">
+
+
+    <div id="map">
+        <input id="iA_l" type="radio" name="iA" class="section" onclick="document.getElementById('iA').checked = this._">
+        <input id="iA_p" type="radio" name="iA" class="section" onclick="document.getElementById('iA').checked = this._">
+        <input id="iA_e" type="radio" name="iA" class="section" onclick="document.getElementById('iA').checked = this._">
+
+        <input id="iA" type="radio" name="iA" checked>
+        <input id="iH" type="checkbox" checked>
+        <input id="iF" type="checkbox" checked>
+
+        <div id="canvas"></div>
+
+        <header id="header">
+            <nav id="navZoom">
+                <label data-icon="&#xe001">
+                </label>
+                <label data-icon="&#xe002">
+                </label>
+            </nav>
+            <h5 id="title">MAP UI 2.0</h5>
+            <label id="labelH" class="blank" for="iH"></label>
+        </header>
+
+        <footer id="footer">
+            <nav id="navAside">
+
+                <label for="iA_l" data-title="Layer" data-icon="&#xe004"
+                       onmousedown="this.control._ = this.control.checked"></label>
+
+                <label for="iA_p" data-title="Path" data-icon="&#xe005"
+                       onmousedown="this.control._ = this.control.checked"></label>
+
+                <label for="iA_e" data-title="Export" data-icon="&#xe006"
+                       onmousedown="this.control._ = this.control.checked"></label>
+            </nav>
+            <label id="labelF" class="blank" for="iF"></label>
+        </footer>
+
+        <aside>
+            <section>
+                <h2 class="demo-section-title">Flat-UI</h2>
+
+                <h4 class="demo-panel-title">Buttons</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <p>
+                            <button class="btn btn-block btn-primary btn-lg">Large</button>
+                            <button class="btn btn-block btn-primary btn-md">Medium</button>
+                            <button class="btn btn-block btn-primary btn-sm">Small</button>
+                            <button class="btn btn-block btn-primary btn-xs">X-Small</button>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <p>
+                            <button class="btn btn-block btn-default">Default</button>
+                            <button class="btn btn-block btn-info">Info</button>
+                            <button class="btn btn-block btn-danger">Danger</button>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <p>
+                            <button class="btn btn-block btn-success">Success</button>
+                            <button class="btn btn-block btn-warning">Warning</button>
+                            <button class="btn btn-block btn-inverse">Inverse</button>
+                        </p>
+                    </div>
+                </div>
+
+                <h4 class="demo-panel-title">Checkboxes / Radios</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <label class="checkbox" for="checkbox1">
+                            <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">Checkbox
+                        </label>
+                        <label class="checkbox checked" for="checkbox2">
+                            <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox2" checked="checked" data-toggle="checkbox">Checkbox checked
+                        </label>
+                        <label class="checkbox disabled" for="checkbox3">
+                            <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox3" data-toggle="checkbox" disabled="">Checkbox disabled
+                        </label>
+                        <label class="checkbox disabled checked" for="checkbox4">
+                            <span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox4" checked="checked" data-toggle="checkbox" disabled="">Checkbox checked
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <label class="radio">
+                            <span class="icons"><span class="first-icon fui-radio-unchecked"></span><span class="second-icon fui-radio-checked"></span></span><input type="radio" name="group1" value="1" data-toggle="radio">Radio is off
+                        </label>
+                        <label class="radio checked">
+                            <span class="icons"><span class="first-icon fui-radio-unchecked"></span><span class="second-icon fui-radio-checked"></span></span><input type="radio" name="group1" value="2" data-toggle="radio" checked="">Radio is on
+                        </label>
+                        <label class="radio disabled">
+                            <span class="icons"><span class="first-icon fui-radio-unchecked"></span><span class="second-icon fui-radio-checked"></span></span><input type="radio" name="group2" value="1" data-toggle="radio" disabled="">Radio is disabled
+                        </label>
+                        <label class="radio disabled checked">
+                            <span class="icons"><span class="first-icon fui-radio-unchecked"></span><span class="second-icon fui-radio-checked"></span></span><input type="radio" name="group2" value="2" data-toggle="radio" disabled="" checked="">Radio is on
+                        </label>
+                    </div>
+                </div>
+
+                <h4 class="demo-panel-title">Inputs</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <input type="text" value="" placeholder="Inactive" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="Disabled" disabled="disabled" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" type="text" placeholder="Apend">
+                                <span class="input-group-addon"><span class="fui-user"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group has-success">
+                            <input type="text" value="Success" class="form-control">
+                            <span class="input-icon fui-check-inverted"></span>
+                        </div>
+                        <div class="form-group has-error">
+                            <input type="text" value="Error" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon"><span class="fui-search"></span></span>
+                                <input class="form-control" type="text" placeholder="Prepend">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <h4 class="demo-panel-title">Pagination</h4>
+                <div class="pagination">
+                    <ul>
+                        <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+                        <li class="active"><a href="#fakelink">1</a></li>
+                        <li><a href="#fakelink">2</a></li>
+                        <li><a href="#fakelink">3</a></li>
+                        <li><a href="#fakelink">4</a></li>
+                        <li><a href="#fakelink">5</a></li>
+                        <li><a href="#fakelink">6</a></li>
+                        <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+                    </ul>
+                </div>-->
+
+                <h4 class="demo-panel-title">Progress</h4>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 40%;"></div>
+                            <div class="progress-bar progress-bar-warning" style="width: 10%;"></div>
+                            <div class="progress-bar progress-bar-danger" style="width: 10%;"></div>
+                            <div class="progress-bar progress-bar-success" style="width: 10%;"></div>
+                            <div class="progress-bar progress-bar-info" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="demo-panel-title">Slider</h4>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-segment" style="margin-left: 25%;"></div><div class="ui-slider-segment" style="margin-left: 25%;"></div><div class="ui-slider-segment" style="margin-left: 25%;"></div><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 25%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 25%;"></a></div>
+                    </div>
+                    <div class="col-xs-2">
+                        <div id="vertical-slider" style="height: 60px;" class="ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-segment" style="top:25%;"></div><div class="ui-slider-segment" style="top:50%;"></div><div class="ui-slider-segment" style="top:75%;"></div><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="height: 50%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="bottom: 50%;"></a></div>
+                    </div>
+                </div>
+
+                <h4 class="demo-panel-title">Select</h4>
+                <div class="row">
+                    <div class="col-xs-12" style="padding-bottom:250px">
+                        <div class="btn-group select select-block mbl open"><button class="btn dropdown-toggle clearfix btn-hg btn-primary" data-toggle="dropdown"><span class="filter-option pull-left">My Profile</span>&nbsp;<span class="caret"></span></button><span class="dropdown-arrow dropdown-arrow-inverse"></span><ul class="dropdown-menu dropdown-inverse" role="menu" style="overflow-y: auto; min-height: 108px; max-height: 247px;"><li rel="0" class="selected"><dt>Profile</dt><a tabindex="-1" href="#" class="opt "><span class="pull-left">My Profile</span></a></li><li rel="1"><a tabindex="-1" href="#" class="opt "><span class="pull-left">My Friends</span></a></li><li rel="2"><div class="divider"></div><dt>System</dt><a tabindex="-1" href="#" class="opt "><span class="pull-left">Messages</span></a></li><li rel="3"><a tabindex="-1" href="#" class="opt "><span class="pull-left">My Settings</span></a></li><li rel="4"><a tabindex="-1" href="#" class="opt highlighted"><span class="pull-left">Logout</span></a></li></ul></div>
+                    </div>
+                </div>
+
+                <h4 class="demo-panel-title">Panel</h4>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="share">
+                            <ul>
+                                <li>
+                                    <h5 style="margin-top:0">Settings</h5>
+                                    <p style="font-size:12px;line-height:14px">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                        <br>
+                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    </p>
+                                </li>
+                                <li>
+                                    <label class="share-label" for="share-toggle2">Show Gridlines</label>
+                                    <div class="switch has-switch"><div class="switch-animate switch-off"><input type="checkbox" data-toggle="switch"><span class="switch-left">ON</span><label>&nbsp;</label><span class="switch-right">OFF</span></div></div>
+                                </li>
+                                <li>
+                                    <label class="share-label" for="share-toggle4">Show other Users</label>
+                                    <div class="switch has-switch"><div class="switch-animate switch-on"><input type="checkbox" checked="" data-toggle="switch"><span class="switch-left">ON</span><label>&nbsp;</label><span class="switch-right">OFF</span></div></div>
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-primary btn-block btn-large">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+
+                <h2 class="demo-section-title">Path</h2>
+            </section>
+            <section>
+
+                <h2 class="demo-section-title">Export</h2>
+            </section>
+
+            <label id="labelA" for="iA"></label>
+        </aside>
+    </div>
+
+
+</body>
+</html>

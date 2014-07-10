@@ -1,0 +1,334 @@
+@import "bootstrap.css";
+@import "flat-ui.css";
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#map,
+#map #canvas {
+  overflow: hidden;
+}
+#map > input {
+  display: none;
+}
+#map,
+#map #canvas,
+#map header,
+#map footer,
+#map aside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#map header,
+#map footer {
+  right: 100%;
+  padding: 0px 15px;
+}
+#map header {
+  min-height: 120px;
+  top: 0;
+  bottom: auto;
+}
+#map footer {
+  min-height: 60px;
+  bottom: 0;
+  top: auto;
+}
+#map aside {
+  width: 100%;
+  left: auto;
+  overflow-y: auto;
+}
+#map aside section {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 0px 15px;
+  padding-bottom: 40px;
+}
+#map header,
+#map aside {
+  border-top-width: 5px;
+  border-top-style: solid;
+}
+#map #iF:checked ~ footer {
+  bottom: -60px;
+}
+#map #iF:checked ~ footer #labelF {
+  width: 34px;
+  height: 34px;
+  top: -44px;
+  border-width: 2px;
+}
+#map #iF:checked ~ footer #labelF:hover {
+  border-width: 8px;
+}
+#map #iF:checked ~ footer #navAside {
+  margin-bottom: 45px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+#map #iA:checked ~ header,
+#map #iA:checked ~ footer {
+  right: 0;
+}
+#map #iA:checked ~ aside {
+  right: -100%;
+}
+#map header > label,
+#map footer > label,
+#map aside > label {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 6px;
+  cursor: pointer;
+}
+#map header > label:hover,
+#map footer > label:hover,
+#map aside > label:hover {
+  border-width: 2px;
+}
+#map header > label:before,
+#map footer > label:before,
+#map aside > label:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 30px;
+  font-family: 'mui';
+  font-size: 22px;
+  vertical-align: top;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#map #iH:checked ~ header {
+  top: -120px;
+}
+#map #iH:checked ~ header #labelH {
+  width: 34px;
+  height: 34px;
+  top: 115px;
+  border-width: 2px;
+}
+#map #iH:checked ~ header #labelH:hover {
+  border-width: 8px;
+}
+#map header > nav,
+#map footer > nav {
+  position: absolute;
+}
+#map header > nav label,
+#map footer > nav label {
+  width: 34px;
+  height: 34px;
+  position: relative;
+  cursor: pointer;
+}
+#map header > nav label:before,
+#map footer > nav label:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  content: attr(data-icon);
+  line-height: 30px;
+  font-family: 'mui';
+  font-size: 22px;
+  vertical-align: top;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#map header > nav label:after,
+#map footer > nav label:after {
+  content: attr(data-title);
+  position: absolute;
+  right: 40px;
+  top: 16px;
+  text-align: right;
+  line-height: 0px;
+  pointer-events: visible;
+  white-space: nowrap;
+  font-weight: 500;
+}
+#map header > nav label:hover:before,
+#map footer > nav label:hover:before {
+  color: transparent;
+  border-width: 8px;
+}
+#map header > nav#navAside,
+#map footer > nav#navAside {
+  right: 0;
+  bottom: 100%;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+#map header > nav#navAside label,
+#map footer > nav#navAside label {
+  display: block;
+}
+#map header > nav#navZoom,
+#map footer > nav#navZoom {
+  left: 0;
+  top: 100%;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+#map input:nth-of-type(1):checked ~ aside section:nth-of-type(1),
+#map input:nth-of-type(2):checked ~ aside section:nth-of-type(2),
+#map input:nth-of-type(3):checked ~ aside section:nth-of-type(3),
+#map input:nth-of-type(4):checked ~ aside section:nth-of-type(4),
+#map input:nth-of-type(5):checked ~ aside section:nth-of-type(5) {
+  display: inline-block;
+}
+#map input:nth-of-type(1):checked ~ footer > nav label:nth-of-type(1):before,
+#map input:nth-of-type(2):checked ~ footer > nav label:nth-of-type(2):before,
+#map input:nth-of-type(3):checked ~ footer > nav label:nth-of-type(3):before,
+#map input:nth-of-type(4):checked ~ footer > nav label:nth-of-type(4):before,
+#map input:nth-of-type(5):checked ~ footer > nav label:nth-of-type(5):before,
+#map input:nth-of-type(1):checked ~ footer > nav label:nth-of-type(1):after,
+#map input:nth-of-type(2):checked ~ footer > nav label:nth-of-type(2):after,
+#map input:nth-of-type(3):checked ~ footer > nav label:nth-of-type(3):after,
+#map input:nth-of-type(4):checked ~ footer > nav label:nth-of-type(4):after,
+#map input:nth-of-type(5):checked ~ footer > nav label:nth-of-type(5):after {
+  color: transparent;
+  border-width: 12px !important;
+}
+#map #canvas {
+  background-color: #888;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGElEQVQYlWNgYGCQwoKxgqGgcJA5h3yFAAs8BRWVSwooAAAAAElFTkSuQmCC);
+}
+#map header,
+#map footer,
+#map aside {
+  background-color: rgba(16, 22, 28, 0.8);
+  color: #ffffff;
+  border-top-color: #1abc9c;
+}
+#map header > nav label,
+#map footer > nav label,
+#map header > label,
+#map aside > label {
+  color: #ffffff;
+}
+#map header > label,
+#map footer > label,
+#map aside > label {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+#map header > nav label:before,
+#map footer > nav label:before,
+#map #iH:checked ~ header #labelH,
+#map #iF:checked ~ footer #labelF,
+#map footer #navAside {
+  border-color: #ffffff;
+}
+#map header,
+#map footer,
+#map aside,
+#map header > nav label:before,
+#map header > nav label:after,
+#map header > label,
+#map footer > nav label:before,
+#map footer > nav label:after,
+#map footer > label,
+#map footer > #navAside {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+@font-face {
+  font-family: 'mui';
+  src: url('../fonts/mui.eot');
+  src: url('../fonts/mui.eot?#iefix') format('embedded-opentype'), url('../fonts/mui.woff') format('woff'), url('../fonts/mui.ttf') format('truetype'), url('../fonts/mui.svg#muiregular') format('svg');
+}
+#map ::-webkit-scrollbar {
+  width: 5px;
+}
+#map ::-webkit-scrollbar-track {
+  background: rgba(26, 188, 156, 0.3);
+}
+#map ::-webkit-scrollbar-thumb {
+  background: #1abc9c;
+}
+/*
+@widthAside_sm: 320px;
+@widthAside_md: 320px;
+@widthAside_lg: 320px;
+*/
+@media (max-width: 768px) {
+  #map header,
+  #map footer {
+    visibility: hidden;
+    opacity: 0;
+  }
+  #map #iA:checked ~ header,
+  #map #iA:checked ~ footer {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@media (min-width: 768px) {
+  #map header,
+  #map footer {
+    right: 300px;
+  }
+  #map aside {
+    width: 300px;
+  }
+  #map #iA:checked ~ aside {
+    right: -300px;
+  }
+}
+@media (min-width: 992px) {
+  #map header,
+  #map footer {
+    right: 360px;
+  }
+  #map aside {
+    width: 360px;
+  }
+  #map #iA:checked ~ aside {
+    right: -360px;
+  }
+}
+@media (min-width: 1200px) {
+  #map header,
+  #map footer {
+    right: 420px;
+  }
+  #map aside {
+    width: 420px;
+  }
+  #map #iA:checked ~ aside {
+    right: -420px;
+  }
+}
