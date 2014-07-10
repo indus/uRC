@@ -58,10 +58,17 @@ export class Node implements WAMP {
 
         connection.onopen = (session, details) => { this.onopen(session, details) };
         connection.open()
+
+
     }
 
     public onopen(session, details) {
         this.session = session;
+
+
+        process.on('exit', () => { this.exitHandler({ cleanup: true }) });
+        process.on('SIGINT', () => { this.exitHandler({ exit: true }) });
+        process.on('uncaughtException', () => { this.exitHandler({ exit: true }) });
 
         var queue = [];
 
@@ -80,4 +87,16 @@ export class Node implements WAMP {
             })
         })
     }
+
+    public exitHandler(options, err?) {
+        console.log(this);
+        this.session.call('mirror.reflect', [this.session.id, null]);
+        this.session.leave();
+        /*
+        if (options.cleanup) console.log('clean');
+        if (err) console.log(err.stack);
+        if (options.exit) process.exit();*/
+    }
 }
+
+
