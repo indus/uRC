@@ -1,9 +1,40 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="urcMirror">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>uRC|Mirror</title>
+    <script src="../_script/angular/angular.js"></script>
+    <script src="../_script/lodash/lodash.modern.js"></script>
+    <script src="../_script/autobahn/autobahn.js"></script>
+    <script src="script/main.js"></script>
+    <link href="style/main.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-controller="mainCTRL">
+    <div class="container" style="padding:50px 0;">
+        <div class="row" ng-repeat="(key,val) in reflections">
+            <div class="col-xs-3">
+                <div class="tile">
+                    <span class="badge">{{key}}</span>
+                    <div ng-show="val.name"><h7>Name</h7>{{val.name}}</div>
+                    <div>
+                        <h7> Subscriptions:</h7>
+                        <span class="fui-new pull-right"></span>
+                        <div class="btn btn-primary btn-block btn-sm" ng-class="{disabled:!val.active}" ng-repeat="(key,val) in val.subscriptions">
+                            {{key}}
+                        </div>
+                    </div>
+                    <div>
+                        <h7>Registrations:</h7>
+                        <span class="fui-new pull-right"></span>
+                        <div class="btn btn-inverse btn-block btn-sm" ng-class="{disabled:!val.active}" ng-repeat="(key,val) in val.registrations">
+                            {{key}}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

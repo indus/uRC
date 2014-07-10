@@ -1,14 +1,12 @@
 ﻿/// <reference path="node.d.ts" />
-var autobahn = require('autobahn');
-var when = require('when');
-var _ = require('lodash');
+var autobahn = require('autobahn'), when = require('when'), _ = require('lodash'), path = require('path');
 
 var Node = (function () {
     function Node(options) {
         var _this = this;
         this.subs = {};
         this.regs = {};
-        this.type = "";
+        this.module = path.basename(module.parent.filename, path.extname(module.parent.filename));
         var connection = this.connection = new autobahn.Connection({
             url: 'ws://127.0.0.1:8080/ws',
             realm: 'realm1'
@@ -27,9 +25,6 @@ var Node = (function () {
     Node.prototype.subscribe = function (topic, func, options) {
         var session = this.session;
         return session.subscribe(topic, func, options).then(function (sub) {
-            var reflection = { subscriptions: {} };
-            reflection.subscriptions[sub.topic] = _.pick(sub, 'id', 'active');
-            session.call('mirror.reflect', [session.id, reflection]);
             console.log("subscribed to " + sub.topic);
         }, function (err) {
             console.log("failed to subscribe: " + err);
@@ -37,54 +32,51 @@ var Node = (function () {
     };
     Node.prototype.register = function (procedure, func, options) {
         var session = this.session;
-        return session.register(procedure, this.regs[procedure][0]).then(function (reg) {
-            var reflection = { registrations: {} };
-            reflection.registrations[reg.procedure] = _.pick(reg, 'id', 'active');
-            session.call('mirror.reflect', [session.id, reflection]);
+        return session.register(procedure, func, options).then(function (reg) {
             console.log("registered " + reg.procedure);
         }, function (err) {
             console.log("failed to register: " + err);
         });
     };
 
+    Node.prototype.reflect = function () {
+        return {
+            id: this.session.id,
+            module: this.module,
+            name: this.name,
+            registrations: _.reduce(this.session.registrations, function (regs, r) {
+                regs[r.procedure] = _.pick(r, "id", "procedure", "active");
+                return regs;
+            }, {}),
+            subscriptions: _.reduce(_.flatten(this.session.subscriptions), function (subs, s) {
+                subs[s.topic] = _.pick(s, "id", "topic", "active");
+                return subs;
+            }, {})
+        };
+    };
+
     Node.prototype.onopen = function (session, details) {
         var _this = this;
         this.session = session;
 
-        process.on('exit', function () {
-            _this.exitHandler({ cleanup: true });
-        });
-        process.on('SIGINT', function () {
-            _this.exitHandler({ exit: true });
-        });
-        process.on('uncaughtException', function () {
-            _this.exitHandler({ exit: true });
-        });
-
         var queue = [];
 
         for (var procedure in this.regs)
-            queue.push(this.register(procedure, this.regs[procedure][0]));
+            queue.push(this.register(procedure, this.regs[procedure]));
 
         for (var topic in this.subs)
-            queue.push(this.subscribe(topic, this.subs[topic][0]));
+            queue.push(this.subscribe(topic, this.subs[topic]));
 
-        session.call('mirror.reflect', [session.id, { type: this.type, name: this.name }]);
+        queue.push(this.register('mirror.' + session.id, function () {
+            return _this.reflect();
+        }));
+        queue.push(this.subscribe('mirror', function () {
+            return _this.reflect();
+        }));
 
         when.all(queue).then(function () {
-            session.call('mirror.reflect').then(function (reflection) {
-            });
+            session.call('mirror', [session.id]);
         });
-    };
-
-    Node.prototype.exitHandler = function (options, err) {
-        console.log(this);
-        this.session.call('mirror.reflect', [this.session.id, null]);
-        this.session.leave();
-        /*
-        if (options.cleanup) console.log('clean');
-        if (err) console.log(err.stack);
-        if (options.exit) process.exit();*/
     };
     return Node;
 })();
