@@ -1,0 +1,54 @@
+﻿@import "../../_style/lesshat.less";
+@import "../../_style/flat-ui/variables.less";
+@import "../../_style/bootstrap.css";
+@import "../../_style/flat-ui.css";
+
+body {
+}
+
+
+
+
+.subscriptions {
+    .dropdown-arrow {
+        right: 14px;
+        border-bottom-color: #1ABC9C !important;
+        border-top-color: #1ABC9C !important;
+        margin-top: 5px;
+    }
+
+    .dropdown-menu {
+            color: #fff;
+        padding: 10px;
+        background-color: #1ABC9C;
+        margin-top: 12px !important;
+        margin-left: 15px;
+        
+            box-shadow: -3px 4px 2px 2px rgba(0,0,0,.2);
+        span.label {
+            border-bottom-left-radius:0px;
+            border-bottom-right-radius:0px;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            border: 2px solid transparent;
+            background-color: transparent;
+            border-radius: 6px;
+            background-color: #16a085;
+            font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.2;
+            border-top-left-radius:0px;
+
+            &:focus {
+                outline:none;
+            }
+
+            &.ng-invalid {
+                border: 2px solid #f0ad4e;
+            }
+        }
+    }
+}
