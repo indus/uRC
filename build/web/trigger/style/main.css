@@ -1,0 +1,12 @@
+@import "../../_style/bootstrap.css";
+@import "../../_style/flat-ui.css";
+body {
+  color: #000;
+}
+.row {
+  padding: 10px 0;
+}
+textarea.ng-invalid {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}

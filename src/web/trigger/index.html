@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="urcMirror">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Trigger</title>
+    <script src="../_script/angular/angular.js"></script>
+    <script src="../_script/lodash/lodash.modern.js"></script>
+    <script src="../_script/autobahn/autobahn.js"></script>
+    <script src="script/main.js"></script>
+    <link href="style/main.css" rel="stylesheet" />
+</head>
+<body ng-controller="mainCTRL" ng-init="mode='pubsub'">
+    <div class="container" style="padding:50px 0;max-width:500px">
+        <form name="submitForm" class="form col-xs-12" role="form" ng-submit="submit()" style="border-bottom:1px solid #ddd; margin-bottom:20px; padding-bottom:10px">
+            <!--<label for="inputEmail3" class="col-sm-2 control-label">Mode</label>-->
+
+            <div class="row" style="padding-bottom:0px">
+                <div class="col-xs-3">
+                    <label for="iPubSub" class="radio" ng-class="{checked:mode=='pubsub'}" style="margin:5px">
+                        <span class="icons">
+                            <span class="first-icon fui-radio-unchecked"></span>
+                            <span class="second-icon fui-radio-checked"></span>
+                        </span>
+                        <input type="radio" id="iPubSub" name="mode" value="pubsub" ng-model="mode">PubSub
+                    </label>
+                </div>
+                <div class="col-xs-3">
+                    <label for="iRpc" class="radio" ng-class="{checked:mode=='rpc'}" style="margin:5px">
+                        <span class="icons">
+                            <span class="first-icon fui-radio-unchecked"></span>
+                            <span class="second-icon fui-radio-checked"></span>
+                        </span>
+                        <input type="radio" id="iRpc" name="mode" value="rpc" ng-model="mode">RPC
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input id="iUri" type="text" value="" placeholder="{{{rpc:'Procedure',pubsub:'Topic'}[mode]}}" class="form-control" ng-model="uri">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <textarea name="json" class="form-control" rows="10" ng-model="args" ng-change="jsonChange(args)" validate-json="object" placeholder="Object/Dictonary"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <div ng-show="mode=='pubsub'">
+                        <label class="checkbox" for="iPubSubAckn" ng-class="{checked:oPubSub.acknowledge}">
+                            <span class="icons">
+                                <span class="first-icon fui-checkbox-unchecked"></span>
+                                <span class="second-icon fui-checkbox-checked"></span>
+                            </span>
+                            <input type="checkbox" value="" id="iPubSubAckn" ng-model="oPubSub.acknowledge">
+                            acknowledge
+                        </label>
+                        <label class="checkbox" for="iPubSubExcl" ng-class="{checked:oPubSub.exclude_me}">
+                            <span class="icons">
+                                <span class="first-icon fui-checkbox-unchecked"></span>
+                                <span class="second-icon fui-checkbox-checked"></span>
+                            </span>
+                            <input type="checkbox" value="" id="iPubSubExcl" ng-model="oPubSub.exclude_me">
+                            exclude me
+                        </label>
+                        <label class="checkbox" for="iPubSubDisc" ng-class="{checked:oPubSub.disclose_me}">
+                            <span class="icons">
+                                <span class="first-icon fui-checkbox-unchecked"></span>
+                                <span class="second-icon fui-checkbox-checked"></span>
+                            </span>
+                            <input type="checkbox" value="" id="iPubSubDisc" ng-model="oPubSub.disclose_me">
+                            disclose me
+                        </label>
+                    </div>
+                    <div ng-show="mode=='rpc'">
+                        <label class="checkbox" for="iRpcDisc" ng-class="{checked:oRpc.disclose_me}">
+                            <span class="icons">
+                                <span class="first-icon fui-checkbox-unchecked"></span>
+                                <span class="second-icon fui-checkbox-checked"></span>
+                            </span>
+                            <input type="checkbox" value="" id="iRpcDisc" ng-model="oRpc.disclose_me">
+                            disclose me
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-block btn-lg btn-primary" type="submit" ng-disabled="!(uri&&session&&!submitForm.json.$error.json)">{{{rpc:'call',pubsub:'publish'}[mode]}}</button>
+                </div>
+            </div>
+        </form>
+
+        <form class="form col-xs-12" role="form" ng-submit="subscribe(topic)">
+            <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
+                <span class="tag" ng-repeat="sub in session.subscriptions">
+                    <span>{{sub[0].topic}}&nbsp;&nbsp;</span>
+                    <a class="tagsinput-remove-link" ng-click="unsubscribe(sub[0])"></a>
+                </span>
+                <label for="subscription" class="tagsinput-add-container" style="margin-bottom:0;">
+                    <span class="tagsinput-add" ng-click="topic && subscribe(topic)"></span>
+                    <input id="subscription" ng-model="topic" placeholder="new Topic" style="width: auto;line-height:1.722;">
+                </label>
+            </div>
+        </form>
+
+        <div class="col-xs-12">
+            <div class="well well-sm" ng-repeat="event in history" ng-click="open=!open">
+                <span class="label label-default">{{event.type}} {{event.timestamp}}</span>
+                <div ng-show="open||!$index">
+                    <p class="center-block" ng-show="event.payload" style="font-size:12px"><b>Payload:</b><br>{{event.payload | json}}</p>
+                    <p class="center-block" ng-show="event.details" style="font-size:12px"><b>Details:</b><br>{{event.details | json}}</p>
+                    <p class="center-block" ng-show="event.options" style="font-size:12px"><b>Options:</b><br>{{event.options | json}}</p>
+                    <p class="center-block" ng-show="event.error" style="font-size:12px"><b>Error:</b><br>{{event.error | json}}</p>
+                    <p class="center-block" ng-show="event.ack" style="font-size:12px"><b>Acknowledge:</b><br>{{event.ack | json}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
