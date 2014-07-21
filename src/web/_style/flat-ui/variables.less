@@ -72,7 +72,7 @@
 @font-family-monospace:     Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-size-base:            18px;
 
-@local-font-path:               "../_style/fonts/lato/";
+@local-font-path:               "fonts/lato/";
 @local-font-name:               "lato-regular";
 @local-font-svg-id:             "latoregular";
 @local-font-name-light:         "lato-light";
@@ -106,7 +106,7 @@
 //
 //## Specify custom locations of the include Glyphicons icon font.
 
-@icon-font-path:            "/_style/fonts/";
+@icon-font-path:            "fonts/";
 @icon-font-name:            "flat-ui-icons-regular";
 @icon-font-svg-id:          "flat-ui-icons-regular";
 
@@ -192,8 +192,37 @@
 
 @input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px       
 
-@input-bg:                  fade(@inverse,10%);
-@input-bg-disabled:         @gray;
+@input-bg:                  @inverse;
+@input-bg-disabled:         mix(@gray, white, 10%);
+
+@input-height-small:        35px;
+@input-height-base:         41px;
+@input-height-large:        45px;
+@input-height-huge:         53px;
+
+@input-border-radius:       @border-radius-large;
+
+@legend-color:              inherit;
+
+
+//== Forms
+//
+//##
+
+@input-font-size-base:      @component-font-size-base;
+@input-font-size-small:     floor(@component-font-size-base * 0.867); // ~13px
+@input-font-size-large:     ceil(@component-font-size-base * 1.133); // ~17px
+@input-font-size-huge:      floor(@component-font-size-base * 1.467); // ~22px
+
+@input-line-height-base:    1.467; // ~22px
+@input-line-height-small:   1.462; // ~19px
+@input-line-height-large:   1.235; // ~21px
+@input-line-height-huge:    1.318; // ~29px
+
+@input-icon-font-size:      ceil(@component-font-size-base * 1.333);  // ~20px       
+
+@input-bg:                  @inverse;
+@input-bg-disabled:         mix(@gray, white, 10%);
 
 @input-height-small:        35px;
 @input-height-base:         41px;

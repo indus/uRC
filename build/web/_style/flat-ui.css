@@ -1,49 +1,49 @@
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-black.eot');
-  src: url('../_style/fonts/lato/lato-black.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-black.woff') format('woff'), url('../_style/fonts/lato/lato-black.ttf') format('truetype'), url('../_style/fonts/lato/lato-black.svg#latoblack') format('svg');
+  src: url('fonts/lato/lato-black.eot');
+  src: url('fonts/lato/lato-black.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-black.woff') format('woff'), url('fonts/lato/lato-black.ttf') format('truetype'), url('fonts/lato/lato-black.svg#latoblack') format('svg');
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-bold.eot');
-  src: url('../_style/fonts/lato/lato-bold.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-bold.woff') format('woff'), url('../_style/fonts/lato/lato-bold.ttf') format('truetype'), url('../_style/fonts/lato/lato-bold.svg#latobold') format('svg');
+  src: url('fonts/lato/lato-bold.eot');
+  src: url('fonts/lato/lato-bold.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-bold.woff') format('woff'), url('fonts/lato/lato-bold.ttf') format('truetype'), url('fonts/lato/lato-bold.svg#latobold') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-bolditalic.eot');
-  src: url('../_style/fonts/lato/lato-bolditalic.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-bolditalic.woff') format('woff'), url('../_style/fonts/lato/lato-bolditalic.ttf') format('truetype'), url('../_style/fonts/lato/lato-bolditalic.svg#latobold-italic') format('svg');
+  src: url('fonts/lato/lato-bolditalic.eot');
+  src: url('fonts/lato/lato-bolditalic.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-bolditalic.woff') format('woff'), url('fonts/lato/lato-bolditalic.ttf') format('truetype'), url('fonts/lato/lato-bolditalic.svg#latobold-italic') format('svg');
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-italic.eot');
-  src: url('../_style/fonts/lato/lato-italic.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-italic.woff') format('woff'), url('../_style/fonts/lato/lato-italic.ttf') format('truetype'), url('../_style/fonts/lato/lato-italic.svg#latoitalic') format('svg');
+  src: url('fonts/lato/lato-italic.eot');
+  src: url('fonts/lato/lato-italic.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-italic.woff') format('woff'), url('fonts/lato/lato-italic.ttf') format('truetype'), url('fonts/lato/lato-italic.svg#latoitalic') format('svg');
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-light.eot');
-  src: url('../_style/fonts/lato/lato-light.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-light.woff') format('woff'), url('../_style/fonts/lato/lato-light.ttf') format('truetype'), url('../_style/fonts/lato/lato-light.svg#latolight') format('svg');
+  src: url('fonts/lato/lato-light.eot');
+  src: url('fonts/lato/lato-light.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-light.woff') format('woff'), url('fonts/lato/lato-light.ttf') format('truetype'), url('fonts/lato/lato-light.svg#latolight') format('svg');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'Lato';
-  src: url('../_style/fonts/lato/lato-regular.eot');
-  src: url('../_style/fonts/lato/lato-regular.eot?#iefix') format('embedded-opentype'), url('../_style/fonts/lato/lato-regular.woff') format('woff'), url('../_style/fonts/lato/lato-regular.ttf') format('truetype'), url('../_style/fonts/lato/lato-regular.svg#latoregular') format('svg');
+  src: url('fonts/lato/lato-regular.eot');
+  src: url('fonts/lato/lato-regular.eot?#iefix') format('embedded-opentype'), url('fonts/lato/lato-regular.woff') format('woff'), url('fonts/lato/lato-regular.ttf') format('truetype'), url('fonts/lato/lato-regular.svg#latoregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Flat-UI-Icons";
-  src: url('/_style/fonts/flat-ui-icons-regular.eot');
-  src: url('/_style/fonts/flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), url('/_style/fonts/flat-ui-icons-regular.woff') format('woff'), url('/_style/fonts/flat-ui-icons-regular.ttf') format('truetype'), url('/_style/fonts/flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
+  src: url('fonts/flat-ui-icons-regular.eot');
+  src: url('fonts/flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), url('fonts/flat-ui-icons-regular.woff') format('woff'), url('fonts/flat-ui-icons-regular.ttf') format('truetype'), url('fonts/flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1151,7 +1151,6 @@ label {
 }
 .form-control {
   border: 2px solid #bdc3c7;
-  color: #ffffff;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.467;
@@ -1159,7 +1158,7 @@ label {
   height: 42px;
   -webkit-appearance: none;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #ffffff;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
@@ -2790,7 +2789,6 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
   border: 2px solid #bdc3c7;
-  color: #ffffff;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.467;
@@ -2798,7 +2796,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   height: 42px;
   -webkit-appearance: none;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #ffffff;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
